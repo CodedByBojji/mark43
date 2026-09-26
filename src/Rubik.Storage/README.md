@@ -1,0 +1,7 @@
+# Rubik storage
+
+`SessionStore.CreateAsync` creates a session under `<storageRoot>/sessions/<session-id>`. Event data is UTF-8 JSONL in numbered `events-NNNN.jsonl` segments. Appends validate contracts, enforce a per-session byte ceiling, flush each complete record, and never rewrite an existing event segment.
+
+Recovery scans each segment through valid, newline-terminated JSON records. If it finds a torn or invalid suffix, it preserves the bytes in a uniquely named `.partial` sidecar and starts a new segment; it does not truncate or silently repair the old segment. Readers should consume only valid complete lines and report recovery sidecars as uncertain evidence. The manifest is a materialized index written through a temporary file and atomically replaced; it is not the event log. Manifests identify schema version, roots, retention policy, and all event segments.
+
+Root checks use canonical full paths and reject path traversal. Artifact helpers enforce byte limits and reject reparse points at the requested path. Hashing returns only SHA-256 bytes and conveys no semantic interpretation. The default policy caps a session at 256 MiB and each artifact at 50 MiB, with 30 day retention; `FindExpiredSessions` only enumerates eligible directories. Deletion is intentionally a separate explicit operation, and callers must honor `DeleteExpiredSessions` before removing data. Defaults can be overridden within validated limits.

@@ -1,0 +1,7 @@
+# Plantilla para .codex/config.toml en un proyecto confiable.
+# Ajusta cwd a la raíz del checkout y cambia el almacén según tu instalación.
+[mcp_servers.rubik]
+command = "dotnet"
+args = ["run", "--project", "src/Rubik.McpServer", "--", "--data-dir", "C:/Users/<usuario>/AppData/Local/Rubik"]
+cwd = "C:/ruta/al/checkout/mark43"
+enabled = true
