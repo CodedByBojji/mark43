@@ -1,0 +1,21 @@
+{
+  "name": "agent-sync",
+  "version": "0.3.0",
+  "description": "Detecta los cambios que hiciste fuera del agente y se los resume antes de cada prompt.",
+  "type": "module",
+  "bin": {
+    "agent-sync": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && node --test \"test/**/*.test.js\"",
+    "start": "node dist/cli.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}

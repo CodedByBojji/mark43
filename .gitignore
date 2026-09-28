@@ -1,23 +1,3 @@
-# .NET build outputs
-**/bin/
-**/obj/
-**/out/
-**/publish/
-
-# Visual Studio and IDE user state
-.vs/
-.idea/
-*.user
-*.suo
-*.userosscache
-*.sln.docstates
-
-# Local logs and diagnostics
-*.log
-*.dmp
-
-# Rubik local session data and recovery fragments
-/RubikData/
-/rubik-data/
-/sessions/
-*.partial
+node_modules/
+dist/
+.agent-sync/

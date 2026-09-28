@@ -1,0 +1,29 @@
+{
+  "description": "agent-sync: guarda la foto del proyecto al terminar cada tarea de Codex y le avisa de tus cambios externos antes de cada prompt.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-sync hook prompt",
+            "timeout": 30,
+            "statusMessage": "agent-sync: revisando cambios externos"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-sync hook stop",
+            "timeout": 30,
+            "statusMessage": "agent-sync: guardando la foto"
+          }
+        ]
+      }
+    ]
+  }
+}
